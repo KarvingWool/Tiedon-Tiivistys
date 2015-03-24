@@ -4,6 +4,7 @@ public class Solmu implements Comparable{
     Solmu vasen;
     Solmu oikea;
     int arvo;
+    char c;
     
     public Solmu(int arvo){
         this.arvo = arvo;

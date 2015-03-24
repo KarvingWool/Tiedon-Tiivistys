@@ -9,5 +9,17 @@ public class Merkki {
         this.newBits = newBits;
     }
     
+    public int bitsToInt(){
+        
+        int count = 0;
+        
+        for(int i=newBits.length()-1;i>=0;i--){
+            if(newBits.charAt(i)==1){
+                count += Math.pow(2, newBits.length()-1-i);
+            }
+        }
+        
+        return count;
+    }
     
 }
