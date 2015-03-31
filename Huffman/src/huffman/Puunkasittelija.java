@@ -4,10 +4,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+/**
+ * The class that handles the manipulations of the "Solmu" class objects,
+ * constructing them into a tree which is used to assign new binary values
+ * to characters.
+ * @author JJV
+ */
+
 public class Puunkasittelija {
+    /**
+     * The root of the constructed tree.
+     */
     private Solmu root;
+    /**
+     * The list containing Merkki objects that store the new binary values
+     * of the given characters.
+     */
     private ArrayList<Merkki> listaUusista;
     
+    /**
+     * The constructor of the class. The tree is constructed and new binary values 
+     * to characters are assigned in this method through calls to methods luoPuu()
+     * and UudetArvot(). The root of the tree is assigned to "root" and the 
+     * created Arraylist is stored in listaUusista.
+     * @param HashMap A map containing the characters found in a file and the 
+     * number of times it occurred.
+     */
     public Puunkasittelija(HashMap<Character, Integer> maarat){
         
         root = luoPuu(maarat);
@@ -16,6 +38,14 @@ public class Puunkasittelija {
         
     }
     
+    
+    /**
+     * This method creates a tree consisting of Solmu objects, and returns the
+     * trees root. The tree is constructed using the info in the given HashMap in
+     * its parameters.
+     * @param HashMap The characters and their frequency in the scanned text file.
+     * @return Solmu The root of the created tree.
+     */
     public static Solmu luoPuu(HashMap<Character, Integer> maarat) {
         Solmu root = null;
 
@@ -44,6 +74,13 @@ public class Puunkasittelija {
         return root;
     }
     
+    /**
+     * The recursive method traverses the tree, creates a Merkki object for each found
+     * character and assigns it a new binary value according to its placing in the tree.
+     * All the Merkki objects are stored into listaUusista.
+     * @param s The root of the tree one wants traversed.
+     * @param str An empty string.
+     */
     
     public void uudetArvot(Solmu s, String str) {
 
@@ -62,11 +99,17 @@ public class Puunkasittelija {
         }
     }
     
-    
+    /**
+     * Returns the root of this classes tree.
+     * @return Solmu root
+     */
     public Solmu getRoot(){
         return this.root;
     }
-    
+    /**
+     * Returns the list of the Merkki objects.
+     * @return ArrayList listUusista
+     */
     public ArrayList getListaUusista(){
         return this.listaUusista;
     }
