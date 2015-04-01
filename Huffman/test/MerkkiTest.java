@@ -1,5 +1,5 @@
 
-import huffman.Solmu;
+import huffman.Merkki;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
  *
  * @author JJV
  */
-public class SolmuTest {
+public class MerkkiTest {
     
-    public SolmuTest() {
+    public MerkkiTest() {
     }
     
     @BeforeClass
@@ -33,18 +33,15 @@ public class SolmuTest {
     }
     
     /**
-     * Tests that the Solmu classes constructor assigns the right values when creating
-     * a new object.
+     * Tests the the Merkki classes constructor assigns the right values to the 
+     * object when a new one is created.
      */
+    
      @Test
-     public void konstruktoriAlkuarvotOikein() {
-         Solmu s = new Solmu(15);
-         
-         assertTrue(s.getVasen() == null);
-         assertTrue(s.getOikea() == null);
-         assertTrue(s.getArvo() == 15);
-         assertTrue(s.getC() == 0);
+     public void konstruktoriToimii() {
+         Merkki m = new Merkki('c', "01101");
+         assertEquals(m.getMerkki(), 'c');
+         assertEquals(m.getNewBits(), "01101");
      }
-     
      
 }

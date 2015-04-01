@@ -1,6 +1,7 @@
 package huffman;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -90,11 +91,11 @@ public class Puunkasittelija {
         }
 
         if (s.vasen != null) {
-            String newS = new String(str += '1');
+            String newS = new String(str + '1');
             uudetArvot(s.vasen, newS);
         }
         if (s.oikea != null) {
-            String newS = new String(str += '0');
+            String newS = new String(str + '0');
             uudetArvot(s.oikea, newS);
         }
     }
@@ -110,7 +111,7 @@ public class Puunkasittelija {
      * Returns the list of the Merkki objects.
      * @return ArrayList listUusista
      */
-    public ArrayList getListaUusista(){
+    public ArrayList<Merkki> getListaUusista(){
         return this.listaUusista;
     }
     

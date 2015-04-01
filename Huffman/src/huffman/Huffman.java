@@ -1,9 +1,5 @@
 package huffman;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
@@ -20,10 +16,19 @@ public class Huffman {
      * @param args 
      */
     public static void main(String[] args) {
-
-        Tiedostonkasittelija tk = new Tiedostonkasittelija("file.txt");
-        Puunkasittelija pk = new Puunkasittelija(tk.scan());
         
-        tk.luoTiedosto("comp.dat", pk.getListaUusista());
+        Scanner lukija = new Scanner(System.in);
+        System.out.print("Give source of the text document you wish to compress, eg. test.txt: ");
+        String teksti = lukija.nextLine();
+        System.out.print("Give wished name of compressed file, eg. comp.dat: ");
+        String comp = lukija.nextLine();
+        
+        Tiedostonkasittelija tk = new Tiedostonkasittelija(teksti);
+        Puunkasittelija pk = new Puunkasittelija(tk.scan());
+        tk.luoKompTiedosto(comp, pk.getListaUusista());
+        
+        Tulkki tulkki = new Tulkki(pk.getRoot(), comp);
+
+     
     }
 }

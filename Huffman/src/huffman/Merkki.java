@@ -26,20 +26,22 @@ public class Merkki {
     }
     
     /**
-     * Converts the bits in the string into an integer value.
-     * @return int Integer value of the binary string newBits.
+     * Returns this objects character.
+     * @return char merkki
      */
-    public int bitsToInt(){
-        
-        int count = 0;
-        
-        for(int i=newBits.length()-1;i>=0;i--){
-            if(newBits.charAt(i)==1){
-                count += Math.pow(2, newBits.length()-1-i);
-            }
-        }
-        
-        return count;
+    public char getMerkki() {
+        return merkki;
     }
+
+    /**
+     * Returns a string of 1 and 0 corresponding to this objects characters
+     * new bitset.
+     * @return String newBits
+     */
+    public String getNewBits() {
+        return newBits;
+    }
+    
+    
     
 }
