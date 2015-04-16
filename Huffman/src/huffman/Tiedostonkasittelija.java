@@ -2,12 +2,11 @@ package huffman;
 
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import tietorakenteet.*;
 
 /**
  * The class that all the manipulations of files are handled in. Reading the
@@ -27,7 +26,11 @@ public class Tiedostonkasittelija {
      * new file.
      */
     File tiedosto;
-
+/**
+ * The amount of characters in the text.
+ */
+    long charCount =-1;
+    
     /**
      * The constructor for the class. It assigns a new file to "tiedosto"
      * according to the string given as a parameter, and then tries to to attach
@@ -53,30 +56,24 @@ public class Tiedostonkasittelija {
      *
      * @return HashMap
      */
-    public HashMap scan() {
-        HashMap<Character, Integer> maarat = new HashMap();
+    public MaaraLista scan() {
 
+        MaaraLista lista = new MaaraLista();
         while (lukija.hasNextLine()) {
 
             String rivi = lukija.nextLine();
-
             for (int i = 0; i <= rivi.length(); i++) {
                 char c;
+                charCount++;
                 if (i == rivi.length()) {
                     c = 10;
                 } else {
                     c = rivi.charAt(i);
                 }
-                if (maarat.containsKey(c)) {
-                    int apu = maarat.get(c);
-                    maarat.remove(c);
-                    maarat.put(c, apu + 1);
-                } else {
-                    maarat.put(c, 1);
-                }
+                lista.add(c, 1);
             }
         }
-        return maarat;
+        return lista;
     }
 
     /**
@@ -88,28 +85,35 @@ public class Tiedostonkasittelija {
      * "text.txt".
      * @param ArrayList A list of the new binary values of each character.
      */
-    public void luoKompTiedosto(String file, ArrayList<Merkki> listaUusista) {
+    public void luoKompTiedosto(String file, MerkkiLista listaUusista) {
 
         try {
             lukija = new Scanner(tiedosto);
             DataOutputStream os = new DataOutputStream(new FileOutputStream(file));
 
 
+
             int[] buffer = new int[8];
             int pointer = 0;
+            
             while (lukija.hasNextLine()) {
                 String rivi = lukija.nextLine();
                 for (int i = 0; i <= rivi.length(); i++) {
                     char c;
                     if (i == rivi.length()) {
+                        if(!lukija.hasNextLine()){
+                            break;
+                        }
                         c = 10;
-                    } else {
+                    } else{
                         c = rivi.charAt(i);
                     }
                     Merkki kopioitava;
-                    for (int z = 0; z < listaUusista.size(); z++) {
-                        if (listaUusista.get(z).merkki == c) {
-                            kopioitava = listaUusista.get(z);
+                    MerkkiListaNode node = listaUusista.getAlku();
+                    while (node != null) {
+                        if (node.getM().getMerkki() == c) {
+                            kopioitava = node.getM();
+                            
 
                             for (int n = 0; n < kopioitava.newBits.length(); n++) {
 
@@ -128,14 +132,17 @@ public class Tiedostonkasittelija {
 
                             break;
                         }
+                        node = node.getOikea();
                     }
                 }
             }
-
+            
+            
             if (pointer != 0) {
                 while (pointer < 8) {
                     buffer[pointer] = 0;
                     pointer++;
+                    
                 }
                 os.write(bitsToInt(buffer));
             }
@@ -165,5 +172,12 @@ public class Tiedostonkasittelija {
         }
 
         return count;
+    }
+    /**
+     * Returns the charCount, the number of characters in the original text.
+     * @return long charCount.
+     */
+    public long getCharCount(){
+        return charCount;
     }
 }

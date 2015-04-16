@@ -1,4 +1,4 @@
-package huffman;
+package tietorakenteet;
 
 /**
  * The class defining a node in a tree.
@@ -10,20 +10,20 @@ public class Solmu implements Comparable {
     /**
      * The left child of this node. Can be null.
      */
-    Solmu vasen;
+    public Solmu vasen;
     /**
      * The right child of this node. Can be null.
      */
-    Solmu oikea;
+    public Solmu oikea;
     /**
      * The value of this node, also the sum of all the values of its children.
      */
-    int arvo;
+    public int arvo;
     /**
      * The char assigned to this node. If the char has a value other than 0
      * we know its a leaf.
      */
-    char c = 0;
+    public char c = 0;
 
     /**
      * The constructor of this class. Assigns a value to arvo.

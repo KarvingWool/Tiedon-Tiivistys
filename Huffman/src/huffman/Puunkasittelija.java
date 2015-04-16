@@ -1,9 +1,11 @@
 package huffman;
 
-import java.util.ArrayList;
+
+import tietorakenteet.Solmu;
 import java.util.Collections;
-import java.util.HashMap;
+
 import java.util.PriorityQueue;
+import tietorakenteet.*;
 
 /**
  * The class that handles the manipulations of the "Solmu" class objects,
@@ -21,8 +23,8 @@ public class Puunkasittelija {
      * The list containing Merkki objects that store the new binary values
      * of the given characters.
      */
-    private ArrayList<Merkki> listaUusista;
-    
+    private MerkkiLista listaUusista;
+
     /**
      * The constructor of the class. The tree is constructed and new binary values 
      * to characters are assigned in this method through calls to methods luoPuu()
@@ -31,10 +33,10 @@ public class Puunkasittelija {
      * @param HashMap A map containing the characters found in a file and the 
      * number of times it occurred.
      */
-    public Puunkasittelija(HashMap<Character, Integer> maarat){
+    public Puunkasittelija(MaaraLista maarat){
         
         root = luoPuu(maarat);
-        listaUusista = new ArrayList();
+        listaUusista = new MerkkiLista();
         uudetArvot(root, new String(""));
         
     }
@@ -47,15 +49,22 @@ public class Puunkasittelija {
      * @param HashMap The characters and their frequency in the scanned text file.
      * @return Solmu The root of the created tree.
      */
-    public static Solmu luoPuu(HashMap<Character, Integer> maarat) {
+    public static Solmu luoPuu(MaaraLista maarat) {
         Solmu root = null;
-
+        MaaraListaNode ln = maarat.getAlku();
         PriorityQueue<Solmu> pq = new PriorityQueue();
-        for (char c : maarat.keySet()) {
-            Solmu s = new Solmu(maarat.get(c));
-            s.c = c;
+        
+        while(ln != null){
+            Solmu s = new Solmu(ln.getCount());
+            s.c = ln.getC();
             pq.add(s);
+            ln = ln.getOikea();
         }
+//        for (char c : maarat.keySet()) {
+//            Solmu s = new Solmu(maarat.get(c));
+//            s.c = c;
+//            pq.add(s);
+//        }
 
         while (!pq.isEmpty()) {
             Solmu eka = pq.poll();
@@ -111,7 +120,7 @@ public class Puunkasittelija {
      * Returns the list of the Merkki objects.
      * @return ArrayList listUusista
      */
-    public ArrayList<Merkki> getListaUusista(){
+    public MerkkiLista getListaUusista(){
         return this.listaUusista;
     }
     

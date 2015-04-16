@@ -1,5 +1,5 @@
 
-import huffman.Solmu;
+import tietorakenteet.Solmu;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
