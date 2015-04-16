@@ -1,12 +1,8 @@
 package huffman;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.util.Scanner;
-import tietorakenteet.MaaraLista;
-import tietorakenteet.MaaraListaNode;
-import tietorakenteet.MinimiKeko;
-import tietorakenteet.Solmu;
+import tietorakenteet.*;
+
 
 /**
  * The main class for the project. Nothing much is done here except the calls

@@ -1,11 +1,9 @@
 package huffman;
 
-import tietorakenteet.Merkki;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Scanner;
 import tietorakenteet.*;
 

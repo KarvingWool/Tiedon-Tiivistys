@@ -1,8 +1,5 @@
 package huffman;
 
-
-
-import tietorakenteet.Merkki;
 import tietorakenteet.*;
 
 /**
@@ -27,8 +24,8 @@ public class Puunkasittelija {
      * The constructor of the class. The tree is constructed and new binary values 
      * to characters are assigned in this method through calls to methods luoPuu()
      * and UudetArvot(). The root of the tree is assigned to "root" and the 
-     * created Arraylist is stored in listaUusista.
-     * @param HashMap A map containing the characters found in a file and the 
+     * created list is stored in listaUusista.
+     * @param MaaraLista A list containing the characters found in a file and the 
      * number of times it occurred.
      */
     public Puunkasittelija(MaaraLista maarat){
@@ -44,7 +41,7 @@ public class Puunkasittelija {
      * This method creates a tree consisting of Solmu objects, and returns the
      * trees root. The tree is constructed using the info in the given HashMap in
      * its parameters.
-     * @param HashMap The characters and their frequency in the scanned text file.
+     * @param MaaraLista The characters and their frequency in the scanned text file.
      * @return Solmu The root of the created tree.
      */
     public static Solmu luoPuu(MaaraLista maarat) {

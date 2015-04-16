@@ -10,25 +10,6 @@ import static org.junit.Assert.*;
 
 public class TiedostoTest {
 
-    public TiedostoTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * A test to check that the bitToInt method returns the right integer values for
      * the given bit set.
