@@ -35,7 +35,8 @@ public class Solmu implements Comparable {
     }
 
     /**
-     *
+     * Compares this object to another, and returns a positive or negative depending
+     * on the arvo values of the two.
      * @param Solmu The node we want to compare this one to.
      * @return int Negative if the compared nodes "arvo" is larger than this
      * one, positive if not.
