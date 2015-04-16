@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.util.Scanner;
 import tietorakenteet.MaaraLista;
 import tietorakenteet.MaaraListaNode;
+import tietorakenteet.MinimiKeko;
+import tietorakenteet.Solmu;
 
 /**
  * The main class for the project. Nothing much is done here except the calls
@@ -33,7 +35,6 @@ public class Huffman {
         
         Tulkki tulkki = new Tulkki(pk.getRoot(), newname, comp, tk.charCount);
 
-        
         
     }
 }

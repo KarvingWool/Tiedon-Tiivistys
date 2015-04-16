@@ -1,10 +1,8 @@
 package huffman;
 
 
-import tietorakenteet.Solmu;
-import java.util.Collections;
 
-import java.util.PriorityQueue;
+import tietorakenteet.Merkki;
 import tietorakenteet.*;
 
 /**
@@ -52,12 +50,12 @@ public class Puunkasittelija {
     public static Solmu luoPuu(MaaraLista maarat) {
         Solmu root = null;
         MaaraListaNode ln = maarat.getAlku();
-        PriorityQueue<Solmu> pq = new PriorityQueue();
+        MinimiKeko mk = new MinimiKeko(maarat.getLength());
         
         while(ln != null){
             Solmu s = new Solmu(ln.getCount());
             s.c = ln.getC();
-            pq.add(s);
+            mk.add(s);
             ln = ln.getOikea();
         }
 //        for (char c : maarat.keySet()) {
@@ -66,20 +64,9 @@ public class Puunkasittelija {
 //            pq.add(s);
 //        }
 
-        while (!pq.isEmpty()) {
-            Solmu eka = pq.poll();
-
-            if (pq.isEmpty()) {
-                root = eka;
-                break;
-            }
-
-            Solmu toka = pq.poll();
-
-            Solmu vanhempi = new Solmu(eka.arvo + toka.arvo);
-            vanhempi.vasen = eka;
-            vanhempi.oikea = toka;
-            pq.add(vanhempi);
+        while (mk.getTail() != 1) {
+            mk.take();
+            root = mk.getKeko()[0];
         }
         return root;
     }

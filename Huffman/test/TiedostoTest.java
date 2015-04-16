@@ -1,5 +1,5 @@
 
-import huffman.Merkki;
+import tietorakenteet.Merkki;
 import huffman.Tiedostonkasittelija;
 import org.junit.After;
 import org.junit.AfterClass;

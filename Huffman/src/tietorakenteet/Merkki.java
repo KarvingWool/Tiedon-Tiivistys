@@ -1,4 +1,4 @@
-package huffman;
+package tietorakenteet;
 
 /**
  * This class contains a character and its corresponding new set of bits.
@@ -8,12 +8,12 @@ public class Merkki {
     /**
      * This objects corresponding character.
      */
-    char merkki;
+    public char merkki;
     
     /**
      * The string of 1 and 0, that is the characters new set of bits.
      */
-    String newBits;
+    public String newBits;
 
     /**
      * The classes constructor, assigning the objects character and string of bits.

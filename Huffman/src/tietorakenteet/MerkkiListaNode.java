@@ -1,7 +1,5 @@
 package tietorakenteet;
 
-import huffman.Merkki;
-
 /**
  * An single object in the MerkkiLista list.
  *

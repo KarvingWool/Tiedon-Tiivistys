@@ -1,5 +1,5 @@
 
-import huffman.Merkki;
+import tietorakenteet.Merkki;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,33 +10,17 @@ import tietorakenteet.MerkkiLista;
 import tietorakenteet.MerkkiListaNode;
 
 /**
- *
+ * Tests the MerkkiLista and MerkkiListaNode classes.
  * @author JJV
  */
 public class MerkkiListaTest {
 
-    public MerkkiListaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
+    /**
+     * Tests whether the addition of Merkki objects to the list works in the 
+     * desired way.
+     */
     @Test
     public void lisaaminenOnnistuu() {
-
         MerkkiLista ml = new MerkkiLista();
         Merkki a = new Merkki('a', "101");
         Merkki b = new Merkki('b', "10111");
@@ -65,6 +49,9 @@ public class MerkkiListaTest {
         assertEquals(node.getM().getNewBits(), "00");
     }
 
+    /**
+     * Tests whether the variable describing the size of the list is accurate.
+     */
     @Test
     public void listanKokoOikea() {
         MerkkiLista ml = new MerkkiLista();

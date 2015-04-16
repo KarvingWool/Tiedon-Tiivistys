@@ -1,7 +1,5 @@
 package tietorakenteet;
 
-import huffman.Merkki;
-
 /**
  * The class for a list containing the needed Merkki objects.
  *

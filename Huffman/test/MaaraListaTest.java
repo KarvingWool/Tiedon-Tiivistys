@@ -8,32 +8,16 @@ import static org.junit.Assert.*;
 import tietorakenteet.MaaraLista;
 import tietorakenteet.MaaraListaNode;
 
+/**
+ * The test for the class MaaraLista and MaaraListaNode.
+ * @author JJV
+ */
 public class MaaraListaTest {
-    private MaaraListaNode ListaNode;
-    
-    public MaaraListaTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-        
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     
-    
+    /**
+     * Test whether adding object to the list has the desired results.
+     */
      @Test
      public void listaanLisaysToimii() {
          MaaraLista lista = new MaaraLista();
@@ -46,7 +30,10 @@ public class MaaraListaTest {
          assertEquals(ln.getOikea().getC(), 'g');
          assertEquals(ln.getOikea().getCount(), 3);
      }
-     
+     /**
+      * Tests whether adding already present characters to the list gives the 
+      * desired results.
+      */
      @Test
      public void listastaLoytyvanCharinLisaysToimii(){
          MaaraLista lista = new MaaraLista();
@@ -64,6 +51,9 @@ public class MaaraListaTest {
          assertEquals(ln.getOikea().getOikea(), null);
      }
      
+     /**
+      * Tests whether the size variable is accurate after multiple additions.
+      */
      @Test
      public void listanKokoOikea(){
           MaaraLista lista = new MaaraLista();

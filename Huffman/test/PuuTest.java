@@ -1,5 +1,5 @@
 
-import huffman.Merkki;
+import tietorakenteet.Merkki;
 import huffman.Puunkasittelija;
 import tietorakenteet.Solmu;
 import java.util.ArrayList;
@@ -18,24 +18,6 @@ import tietorakenteet.*;
  */
 public class PuuTest {
 
-    public PuuTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * A test to check that all nodes have either two or zero children.
