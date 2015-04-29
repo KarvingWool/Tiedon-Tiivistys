@@ -4,6 +4,7 @@ import tietorakenteet.Solmu;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.nio.ByteBuffer;
 import java.util.Scanner;
 
 /**
@@ -25,20 +26,19 @@ public class Tulkki {
      * The constructor of this class. Assigns a Solmu object to root and calls
      * to luoLuettavaTiedosto to create a readable file from the given
      * compressed file.
+     *
      * @param Solmu The root of a tree.
      * @param String tiedosto Name of the compressed file.
      * @param String newname Name wished for uncompressed file.
-     * @param long The amount of characters in the original file.
      */
-    public Tulkki(Solmu root, String newname, String tiedosto, long charCount) {
-        this.charCount = charCount;
-        this.root = root;
+    public Tulkki(String newname, String tiedosto) {
         luoLuettavaTiedosto(newname, tiedosto);
     }
 
     /**
      * This method creates a readable text file out of the given compressed
      * file.
+     *
      * @param String file The name of the compressed file.
      * @param String newname The wished name for uncompressed file.
      */
@@ -54,6 +54,29 @@ public class Tulkki {
         try {
             FileInputStream fis = new FileInputStream(file);
             fr = new FileWriter(readable);
+
+
+
+
+            // Reading and creating tree from compressed file.
+            int length = fis.read()+127;
+            int[] array = new int[length];
+            int puuCounter = 0;
+            while (puuCounter < length) {
+                array[puuCounter] = fis.read();
+                puuCounter++;
+            }
+
+            Puunkasittelija uusi = new Puunkasittelija(array);
+            root = uusi.getRoot();
+
+//             Reading charcount and compressed data from compressed file.
+            byte[] longs = new byte[8];
+            fis.read(longs, 0, 8);
+            ByteBuffer buffer = ByteBuffer.allocate(8);
+            buffer.put(longs);
+            buffer.flip();
+            charCount = buffer.getLong();
 
             long charcounter = 0;
             String bits = "";

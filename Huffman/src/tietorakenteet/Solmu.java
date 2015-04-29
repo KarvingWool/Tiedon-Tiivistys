@@ -3,7 +3,6 @@ package tietorakenteet;
 /**
  * The class defining a node in a tree.
  *
- * @author JJV
  */
 public class Solmu implements Comparable {
 
@@ -16,12 +15,13 @@ public class Solmu implements Comparable {
      */
     public Solmu oikea;
     /**
-     * The value of this node, also the sum of all the values of its children.
+     * The value of this node, also the sum of all the values of its children if
+     * it is used in the construction of a tree from uncompressed data.
      */
     public int arvo;
     /**
-     * The char assigned to this node. If the char has a value other than 0
-     * we know its a leaf.
+     * The char assigned to this node. If the char has a value other than 0 we
+     * know its a leaf.
      */
     public char c = 0;
 
@@ -35,8 +35,9 @@ public class Solmu implements Comparable {
     }
 
     /**
-     * Compares this object to another, and returns a positive or negative depending
-     * on the arvo values of the two.
+     * Compares this object to another, and returns a positive or negative
+     * depending on the arvo values of the two.
+     *
      * @param Solmu The node we want to compare this one to.
      * @return int Negative if the compared nodes "arvo" is larger than this
      * one, positive if not.
@@ -49,13 +50,16 @@ public class Solmu implements Comparable {
 
     /**
      * Returns this nodes left child.
+     *
      * @return Solmu vasen
      */
     public Solmu getVasen() {
         return vasen;
     }
-/**
+
+    /**
      * Returns this nodes right child.
+     *
      * @return Solmu oikea
      */
     public Solmu getOikea() {
@@ -64,6 +68,7 @@ public class Solmu implements Comparable {
 
     /**
      * Returns this nodes value.
+     *
      * @return int arvo
      */
     public int getArvo() {
@@ -72,6 +77,7 @@ public class Solmu implements Comparable {
 
     /**
      * Returns this nodes corresponding character.
+     *
      * @return char c
      */
     public char getC() {

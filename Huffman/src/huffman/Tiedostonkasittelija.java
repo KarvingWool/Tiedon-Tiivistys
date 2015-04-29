@@ -84,14 +84,24 @@ public class Tiedostonkasittelija {
      * "text.txt".
      * @param ArrayList A list of the new binary values of each character.
      */
-    public void luoKompTiedosto(String file, MerkkiLista listaUusista) {
+    public void luoKompTiedosto(String file, MerkkiLista listaUusista, int[] printattavaPuu) {
 
         try {
             lukija = new Scanner(tiedosto);
             DataOutputStream os = new DataOutputStream(new FileOutputStream(file));
 
+            
+            // Writing huffman tree to file.
+            os.write(printattavaPuu.length-127);
+            int arrayPointer =0;
+            while(arrayPointer<printattavaPuu.length){
+                os.write(printattavaPuu[arrayPointer]);
+                arrayPointer++;
+            }
 
-
+            // Writing charcount and compressed data to file.
+            
+            os.writeLong(charCount);
             int[] buffer = new int[8];
             int pointer = 0;
             

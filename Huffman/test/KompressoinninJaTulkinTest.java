@@ -40,7 +40,7 @@ public class KompressoinninJaTulkinTest {
 
     @Test
     public void tekstiSamaPienellaSyotteella() {
-        File file = new File("testausta.txt");
+        File file = new File("test/testitiedostoja/testausta.txt");
         try {
             file.createNewFile();
         } catch (Exception e) {
@@ -62,14 +62,14 @@ public class KompressoinninJaTulkinTest {
             }
         }
 
-        Tiedostonkasittelija tk = new Tiedostonkasittelija("testausta.txt");
+        Tiedostonkasittelija tk = new Tiedostonkasittelija("test/testitiedostoja/testausta.txt");
         Puunkasittelija pk = new Puunkasittelija(tk.scan());
-        tk.luoKompTiedosto("testausta.dat", pk.getListaUusista());
+        tk.luoKompTiedosto("test/testitiedostoja/testausta.dat", pk.getListaUusista(), pk.getPrintattavaPuu());
 
-        Tulkki tulkki = new Tulkki(pk.getRoot(), "uncomptestausta.txt", "testausta.dat", tk.getCharCount());
+        Tulkki tulkki = new Tulkki("test/testitiedostoja/uncomptestausta.txt", "test/testitiedostoja/testausta.dat");
 
         StringBuilder newtext = new StringBuilder();
-        File newFile = new File("uncomptestausta.txt");
+        File newFile = new File("test/testitiedostoja/uncomptestausta.txt");
         try {
             Scanner lukija = new Scanner(newFile);
             while (lukija.hasNextLine()) {
@@ -88,7 +88,7 @@ public class KompressoinninJaTulkinTest {
     
     @Test
     public void toimiikoSuurellaRandomisoidullaSyotteella(){
-       File file = new File("randtestausta.txt");
+       File file = new File("test/testitiedostoja/randtestausta.txt");
         try {
             file.createNewFile();
         } catch (Exception e) {
@@ -116,14 +116,14 @@ public class KompressoinninJaTulkinTest {
             }
         }
 
-        Tiedostonkasittelija tk = new Tiedostonkasittelija("randtestausta.txt");
+        Tiedostonkasittelija tk = new Tiedostonkasittelija("test/testitiedostoja/randtestausta.txt");
         Puunkasittelija pk = new Puunkasittelija(tk.scan());
-        tk.luoKompTiedosto("randtestausta.dat", pk.getListaUusista());
+        tk.luoKompTiedosto("test/testitiedostoja/randtestausta.dat", pk.getListaUusista(), pk.getPrintattavaPuu());
 
-        Tulkki tulkki = new Tulkki(pk.getRoot(), "randuncomptestausta.txt", "randtestausta.dat", tk.getCharCount());
+        Tulkki tulkki = new Tulkki("test/testitiedostoja/randuncomptestausta.txt", "test/testitiedostoja/randtestausta.dat");
 
         StringBuilder newtext = new StringBuilder();
-        File newFile = new File("randuncomptestausta.txt");
+        File newFile = new File("test/testitiedostoja/randuncomptestausta.txt");
         try {
             Scanner lukija = new Scanner(newFile);
             while (lukija.hasNextLine()) {
