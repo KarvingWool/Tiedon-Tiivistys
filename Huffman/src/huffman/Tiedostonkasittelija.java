@@ -1,8 +1,10 @@
 package huffman;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 
 import java.util.Scanner;
 import tietorakenteet.*;
@@ -17,19 +19,19 @@ import tietorakenteet.*;
 public class Tiedostonkasittelija {
 
     /**
-     * The scanner used to read the source file or write a new file.
+     * The reader used to read the source file or write a new file.
      */
-    private Scanner lukija;
+    private BufferedReader lukija = null;
     /**
      * The file object used to refer to either the source file, or the created
      * new file.
      */
     File tiedosto;
-/**
- * The amount of characters in the text.
- */
-    long charCount =-1;
-    
+    /**
+     * The amount of characters in the text.
+     */
+    long charCount = -1;
+
     /**
      * The constructor for the class. It assigns a new file to "tiedosto"
      * according to the string given as a parameter, and then tries to to attach
@@ -39,10 +41,15 @@ public class Tiedostonkasittelija {
      * "teksti.txt"
      */
     public Tiedostonkasittelija(String file) {
+        FileReader reader = null;
+        BufferedReader buff = null;
+
         tiedosto = new File(file);
 
         try {
-            lukija = new Scanner(tiedosto);
+            reader = new FileReader(tiedosto);
+            buff = new BufferedReader(reader);
+            lukija = buff;
         } catch (Exception e) {
             System.out.println("File not found!");
         }
@@ -58,9 +65,18 @@ public class Tiedostonkasittelija {
     public MaaraLista scan() {
 
         MaaraLista lista = new MaaraLista();
-        while (lukija.hasNextLine()) {
+        String rivi;
+        while (true) {
 
-            String rivi = lukija.nextLine();
+            try {
+                rivi = lukija.readLine();
+            } catch (Exception e) {
+                break;
+            }
+            if(rivi == null){
+                break;
+            }
+
             for (int i = 0; i <= rivi.length(); i++) {
                 char c;
                 charCount++;
@@ -85,44 +101,52 @@ public class Tiedostonkasittelija {
      * @param ArrayList A list of the new binary values of each character.
      */
     public void luoKompTiedosto(String file, MerkkiLista listaUusista, int[] printattavaPuu) {
-
+        
         try {
-            lukija = new Scanner(tiedosto);
+            FileReader reader = new FileReader(tiedosto);
+            lukija = new BufferedReader(reader); 
             DataOutputStream os = new DataOutputStream(new FileOutputStream(file));
 
-            
+
             // Writing huffman tree to file.
-            os.write(printattavaPuu.length);
-            int arrayPointer =0;
-            while(arrayPointer<printattavaPuu.length){
+            if (printattavaPuu.length > 127) {
+                os.write(printattavaPuu.length - 127);
+                os.write(127);
+            } else {
+                os.write(printattavaPuu.length);
+                os.write(0);
+            }
+            int arrayPointer = 0;
+            while (arrayPointer < printattavaPuu.length) {
                 os.write(printattavaPuu[arrayPointer]);
                 arrayPointer++;
             }
 
             // Writing charcount and compressed data to file.
-            
             os.writeLong(charCount);
             int[] buffer = new int[8];
             int pointer = 0;
-            
-            while (lukija.hasNextLine()) {
-                String rivi = lukija.nextLine();
+            long writecount =0;
+            while (true) {
+                String rivi = lukija.readLine();
+                if(rivi == null) break;
                 for (int i = 0; i <= rivi.length(); i++) {
                     char c;
                     if (i == rivi.length()) {
-                        if(!lukija.hasNextLine()){
+                        if (writecount >= charCount) {
                             break;
                         }
                         c = 10;
-                    } else{
+                    } else {
                         c = rivi.charAt(i);
                     }
+                    writecount++;
                     Merkki kopioitava;
                     MerkkiListaNode node = listaUusista.getAlku();
                     while (node != null) {
                         if (node.getM().getMerkki() == c) {
                             kopioitava = node.getM();
-                            
+
 
                             for (int n = 0; n < kopioitava.newBits.length(); n++) {
 
@@ -145,13 +169,13 @@ public class Tiedostonkasittelija {
                     }
                 }
             }
-            
-            
+
+
             if (pointer != 0) {
                 while (pointer < 8) {
                     buffer[pointer] = 0;
                     pointer++;
-                    
+
                 }
                 os.write(bitsToInt(buffer));
             }
@@ -182,11 +206,13 @@ public class Tiedostonkasittelija {
 
         return count;
     }
+
     /**
      * Returns the charCount, the number of characters in the original text.
+     *
      * @return long charCount.
      */
-    public long getCharCount(){
+    public long getCharCount() {
         return charCount;
     }
 }
