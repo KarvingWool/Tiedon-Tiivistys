@@ -59,7 +59,7 @@ public class Tulkki {
 
 
             // Reading and creating tree from compressed file.
-            int length = fis.read()+127;
+            int length = fis.read();
             int[] array = new int[length];
             int puuCounter = 0;
             while (puuCounter < length) {

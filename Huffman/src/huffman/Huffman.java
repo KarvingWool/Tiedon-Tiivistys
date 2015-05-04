@@ -42,7 +42,7 @@ public class Huffman {
             Tulkki tulkki = new Tulkki(newname, comp);
             System.out.println(tulkki.charCount);
         } else {
-            System.out.println("Please enter 'c' or 'u'");
+            System.out.println("Please enter 'c' or 'u' next time.");
         }
 
     }

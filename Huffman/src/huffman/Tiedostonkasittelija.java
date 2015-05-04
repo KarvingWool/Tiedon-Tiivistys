@@ -92,7 +92,7 @@ public class Tiedostonkasittelija {
 
             
             // Writing huffman tree to file.
-            os.write(printattavaPuu.length-127);
+            os.write(printattavaPuu.length);
             int arrayPointer =0;
             while(arrayPointer<printattavaPuu.length){
                 os.write(printattavaPuu[arrayPointer]);
