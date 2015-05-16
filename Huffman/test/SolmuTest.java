@@ -8,29 +8,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Tests that the Class for the Object Solmu is in working order.
  * @author JJV
  */
 public class SolmuTest {
-    
-    public SolmuTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
     
     /**
      * Tests that the Solmu classes constructor assigns the right values when creating

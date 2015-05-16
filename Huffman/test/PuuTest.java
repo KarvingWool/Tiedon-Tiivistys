@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 import tietorakenteet.*;
 
 /**
- *
- * @author JJV
+ * The Class devoted to testing the working order the the Puunkasittelija class.
  */
 public class PuuTest {
 

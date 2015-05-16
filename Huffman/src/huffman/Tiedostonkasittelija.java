@@ -23,8 +23,7 @@ public class Tiedostonkasittelija {
      */
     private BufferedReader lukija = null;
     /**
-     * The file object used to refer to either the source file, or the created
-     * new file.
+     * The file object used to refer to the source file.
      */
     File tiedosto;
     /**
@@ -214,5 +213,13 @@ public class Tiedostonkasittelija {
      */
     public long getCharCount() {
         return charCount;
+    }
+    
+    /**
+     * Returns the file object of the source file.
+     * @return File tiedosto
+     */
+    public File getFile(){
+        return tiedosto;
     }
 }

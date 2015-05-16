@@ -8,29 +8,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author JJV
+ * The class that tests the class of the object Merkki.
  */
 public class MerkkiTest {
     
-    public MerkkiTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
     
     /**
      * Tests the the Merkki classes constructor assigns the right values to the 

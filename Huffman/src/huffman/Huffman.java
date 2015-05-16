@@ -33,14 +33,14 @@ public class Huffman {
             Tiedostonkasittelija tk = new Tiedostonkasittelija(teksti);
             Puunkasittelija pk = new Puunkasittelija(tk.scan());
             tk.luoKompTiedosto(comp, pk.getListaUusista(), pk.getPrintattavaPuu());
-            System.out.println(tk.getCharCount());
+//            System.out.println(tk.getCharCount());
         } else if (kumpi.equals("u")) {
             System.out.print("Give the name of compressed file, eg. comp.dat: ");
             String comp = lukija.nextLine();
             System.out.print("Give wished name for uncompressed file: ");
             String newname = lukija.nextLine();
             Tulkki tulkki = new Tulkki(newname, comp);
-            System.out.println(tulkki.charCount);
+//            System.out.println(tulkki.charCount);
         } else {
             System.out.println("Please enter 'c' or 'u' next time.");
         }
