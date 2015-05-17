@@ -53,9 +53,9 @@ public class KompressoinninJaTulkinTest {
         Tiedostonkasittelija tk = new Tiedostonkasittelija("test/testitiedostoja/testausta.txt");
         Puunkasittelija pk = new Puunkasittelija(tk.scan());
         tk.luoKompTiedosto("test/testitiedostoja/testausta.dat", pk.getListaUusista(), pk.getPrintattavaPuu());
-
-        Tulkki tulkki = new Tulkki("test/testitiedostoja/uncomptestausta.txt", "test/testitiedostoja/testausta.dat");
-
+        
+        Tulkki tulkki = new Tulkki("test/testitiedostoja/uncomptestausta.txt", "test/testitiedostoja/testausta.dat", false);
+        
         StringBuilder newtext = new StringBuilder();
         File newFile = new File("test/testitiedostoja/uncomptestausta.txt");
         try {
@@ -83,7 +83,7 @@ public class KompressoinninJaTulkinTest {
         Puunkasittelija pk = new Puunkasittelija(tk.scan());
         tk.luoKompTiedosto("test/testitiedostoja/gut.dat", pk.getListaUusista(), pk.getPrintattavaPuu());
 
-        Tulkki tulkki = new Tulkki("test/testitiedostoja/uncompgut.txt", "test/testitiedostoja/gut.dat");
+        Tulkki tulkki = new Tulkki("test/testitiedostoja/uncompgut.txt", "test/testitiedostoja/gut.dat", true);
 
         BufferedReader lukija  = null;
         BufferedReader lukija2 = null;
@@ -152,7 +152,7 @@ public class KompressoinninJaTulkinTest {
         Puunkasittelija pk = new Puunkasittelija(tk.scan());
         tk.luoKompTiedosto("test/testitiedostoja/randtestausta.dat", pk.getListaUusista(), pk.getPrintattavaPuu());
 
-        Tulkki tulkki = new Tulkki("test/testitiedostoja/randuncomptestausta.txt", "test/testitiedostoja/randtestausta.dat");
+        Tulkki tulkki = new Tulkki("test/testitiedostoja/randuncomptestausta.txt", "test/testitiedostoja/randtestausta.dat", false);
 
         StringBuilder newtext = new StringBuilder();
         File newFile = new File("test/testitiedostoja/randuncomptestausta.txt");

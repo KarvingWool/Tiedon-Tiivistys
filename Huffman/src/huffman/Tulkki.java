@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.nio.ByteBuffer;
-import java.util.Scanner;
 
 /**
  * The class that translates the compressed file back into a readable format.
@@ -21,17 +20,23 @@ public class Tulkki {
      * The amount of characters in the original text.
      */
     long charCount;
+    /**
+     * Used to delete the extra character from the printed outcome when using UTF-8
+     * encoding. Set as false if the encoding of the file is different.
+     */
+    boolean ekaChar = true;             
 
     /**
-     * The constructor of this class. Assigns a Solmu object to root and calls
+     * The constructor of this class. Assigns the value of ekaChar and calls
      * to luoLuettavaTiedosto to create a readable file from the given
      * compressed file.
      *
-     * @param Solmu The root of a tree.
+     * @param boolean True for UTF-8 and false for ANSI encoded files.
      * @param String tiedosto Name of the compressed file.
      * @param String newname Name wished for uncompressed file.
      */
-    public Tulkki(String newname, String tiedosto) {
+    public Tulkki(String newname, String tiedosto, boolean b) {
+        ekaChar = b;
         luoLuettavaTiedosto(newname, tiedosto);
     }
 
@@ -61,9 +66,10 @@ public class Tulkki {
             // Reading and creating tree from compressed file.
             int length1 = fis.read();
             int length2 = fis.read();
-            int[] array = new int[length1+length2];
+            int[] array = new int[length1 + length2];
             int puuCounter = 0;
-            while (puuCounter < length1+length2) {
+
+            while (puuCounter < length1 + length2) {
                 array[puuCounter] = fis.read();
                 puuCounter++;
             }
@@ -79,6 +85,7 @@ public class Tulkki {
             buffer.flip();
             charCount = buffer.getLong();
 
+            
             long charcounter = 0;
             String bits = "";
             int counter = 0;
@@ -96,11 +103,15 @@ public class Tulkki {
 
                 while (counter < bits.length()) {
                     if (s.oikea == null) {
-                        if (charcounter != charCount) {
+                        if (charcounter < charCount) {
                             if (s.c == '\n') {
                                 fr.append(System.lineSeparator());
                             } else {
-                                fr.append(s.c);
+                                if (ekaChar) {
+                                    ekaChar = false;
+                                } else {
+                                    fr.append(s.c);
+                                }
                             }
                         }
                         bits = bits.substring(counter);
@@ -130,5 +141,9 @@ public class Tulkki {
                 }
             }
         }
+    }
+    
+    public void setEkaChar(boolean b){
+        ekaChar = b;
     }
 }
